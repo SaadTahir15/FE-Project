@@ -1,0 +1,58 @@
+/* components/Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 0 20px;
+    color: white;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar-left {
+    flex: 1;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbar-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar-center a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar-center a:hover {
+    color: #f4a261;
+  }
+  
+  .navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .icon-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s;
+  }
+  
+  .icon-link:hover {
+    color: #f4a261;
+  }
+  
