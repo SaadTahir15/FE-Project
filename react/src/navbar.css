@@ -1,12 +1,12 @@
-/* components/Navbar.css */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: #EBE3D5;
     padding: 0 20px;
     color: white;
     height: 60px;
+    border-bottom: solid black;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
   
@@ -17,7 +17,7 @@
   .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: white;
+    color: rgb(16, 15, 15);
     text-decoration: none;
   }
   
@@ -28,7 +28,7 @@
   }
   
   .navbar-center a {
-    color: white;
+    color: rgb(9, 9, 9);
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
@@ -36,7 +36,7 @@
   }
   
   .navbar-center a:hover {
-    color: #f4a261;
+    color: #B0A695;
   }
   
   .navbar-right {
@@ -46,13 +46,13 @@
   }
   
   .icon-link {
-    color: white;
+    color: rgb(16, 16, 16);
     text-decoration: none;
     margin-left: 15px;
     transition: color 0.3s;
   }
   
   .icon-link:hover {
-    color: #f4a261;
+    color: #B0A695;
   }
   

@@ -1,4 +1,3 @@
-// components/Navbar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaSignInAlt, FaUser, FaShoppingCart } from 'react-icons/fa';
@@ -11,8 +10,10 @@ const Navbar = () => (
     </div>
     <div className="navbar-center">
       <Link to="/">Home</Link>
+      <Link to="/forum">Forum</Link>
+      <Link to="/news">News</Link>
+      <Link to="/shop">Shop</Link>
       <Link to="/about">About</Link>
-      <Link to="/services">Services</Link>
       <Link to="/contact">Contact</Link>
     </div>
     <div className="navbar-right">

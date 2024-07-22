@@ -1,0 +1,46 @@
+.announcement-bar {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    background-color: #B0A695;
+    padding: 0 10px;
+    color: black;
+    height: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.announcement-content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content:center;
+    margin-left: 6%;
+}
+
+.announcement-greeting {
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 0px;
+}
+
+.announcement-icon {
+    color: white;
+    margin: 0 5px;
+}
+
+.announcement-icon.primary {
+    color: #3b5998;
+}
+
+.announcement-icon.secondary {
+    color: #E4405F;
+}
+
+.announcement-icon.default {
+    color: #000000;
+}
