@@ -1,69 +1,50 @@
 .hero-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: 80vh; /* Adjust this value to control the height of the images */
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* Prevent overflow */
+  height: 500px;
+  background-color: #DDDDDD;
+  padding: 20px;
 }
 
-.hero-item {
-  position: relative;
+.hero-text {
   flex: 1;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  opacity: 0; /* Initially hidden */
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.hero-buttons {
+  margin-top: 20px;
+}
+
+.hero-images {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(50%);
-  transition: filter 0.3s ease;
-}
-
-.hero-item:nth-child(1) {
-  animation: slideIn 1s ease-out forwards; /* Apply the animation */
-  animation-delay: 0s; /* Start immediately */
-}
-
-.hero-item:nth-child(2) {
-  animation: slideIn 1s ease-out forwards; /* Apply the animation */
-  animation-delay: 0.5s; /* Delay for 0.5 seconds */
-}
-
-.hero-item:hover .hero-image {
-  filter: brightness(100%);
-}
-
-.overlay {
   position: absolute;
-  bottom: 20px; /* Position the overlay at the bottom */
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white; /* Text color */
-  text-align: center; /* Center text */
+  width: 400px;
+  height: auto;
+  opacity: 0;
+  /* transform: scale(0.95);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out; */
 }
 
-.hero-button {
-  z-index: 1; /* Ensure the button is above other elements */
-  margin-top: 10px; /* Add some space above the button */
+.hero-image.visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.hero-image.hidden {
+  opacity: 0;
+  transform: scale(0.95);
 }

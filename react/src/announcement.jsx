@@ -8,7 +8,7 @@ function Announcement() {
         <div className="announcement-bar">
             <div className="announcement-content">
                 <div className="announcement-greeting">
-                    <span>WELCOME TO FOOTBALL FORUM & SHOP!</span>
+                    <span>WELCOME TO FOOTBALL FORUM & SHOP</span>
                 </div>
             </div>
             <div className="social-icons">
