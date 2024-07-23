@@ -1,0 +1,20 @@
+.topic-bar {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+  
+  .topic-chip {
+    margin: 0 5px;
+  }
+  
+  .topic-bar .MuiIconButton-root {
+    margin-right: 10px;
+  }
+  
