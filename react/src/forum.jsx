@@ -11,13 +11,8 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import TopicBar from './topicBar';
-import WritePost from './writePost'; // Import the new component
-
-const initialPosts = [
-  { id: 1, name: "Saad Tahir", title: "First Post", content: "This is the first post content.", likes: 10, comments: 5, topic: 'Messi' },
-  { id: 2, name: "johJ", title: "Second Post Title", content: "This is the second post content.", likes: 5, comments: 2, topic: 'Mbappe' },
-  { id: 3, name: "Alexender", title: "Third Post Title", content: "This is the third post content.", likes: 20, comments: 8, topic: 'Real Madrid' }
-];
+import WritePost from './writePost';
+import { initialPosts } from './post';
 
 const topics = ['All', 'Messi', 'Mbappe', 'Real Madrid', 'Transfer'];
 
@@ -41,6 +36,7 @@ function Forum() {
 
   const handleSubmit = (newPost) => {
     setPosts([...posts, { ...newPost, id: posts.length + 1, likes: 0, comments: 0 }]);
+    setIsWriting(false); // Close the write post dialog after submitting
   };
 
   const handleTopicChange = (topic) => {
@@ -53,10 +49,10 @@ function Forum() {
     <div className="container">
       <TopicBar onWriteClick={handleWriteClick} onTopicChange={handleTopicChange} />
       {filteredPosts.map((post) => (
-        <Card 
-          key={post.id} 
-          className="custom-card" 
-          onClick={() => handleClick(post.id)} 
+        <Card
+          key={post.id}
+          className="custom-card"
+          onClick={() => handleClick(post.id)}
           style={{ cursor: 'pointer' }}
         >
           <CardHeader
@@ -68,10 +64,10 @@ function Forum() {
             title={post.name || 'Anonymous'}
           />
           <CardContent>
-            <Typography variant="h6" color="text.primary" sx={{ fontWeight: 'bold'}}>
+            <Typography variant="h6" color="text.primary" sx={{ fontWeight: 'bold' }}>
               {post.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{paddingTop:'0'}}>
+            <Typography variant="body2" color="text.secondary" sx={{ paddingTop: '0' }}>
               {post.content}
             </Typography>
             <div className="card-icons">

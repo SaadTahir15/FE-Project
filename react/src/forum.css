@@ -24,32 +24,3 @@ body{
     box-shadow: none !important;
 }
 
-.topic-bar {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.topic-options {
-    flex: 1;
-    display: flex;
-    gap: 10px;
-}
-
-.topic-button {
-    padding: 5px 10px;
-    border-radius: 20px;
-    border: 1px solid transparent;
-    background-color: #f0f0f0;
-    cursor: pointer;
-}
-
-.topic-button.active {
-    background-color: #b3d9ff;
-    border: 1px solid #007bff;
-}
