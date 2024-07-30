@@ -15,6 +15,8 @@ import './CommentsPopup.css';
 const CommentsPopup = ({ comments = [], handleClose, handleAddComment, handleAddReply }) => {
   const [replyingTo, setReplyingTo] = useState(null);
   const [showReplies, setShowReplies] = useState({});
+  const [commentText, setCommentText] = useState('');
+  const [replyText, setReplyText] = useState('');
 
   const handleReplyClick = (commentId) => {
     setReplyingTo(replyingTo === commentId ? null : commentId);
@@ -27,13 +29,23 @@ const CommentsPopup = ({ comments = [], handleClose, handleAddComment, handleAdd
     }));
   };
 
-  const handleReplySubmit = (text, commentId) => {
-    handleAddReply(text, commentId);
-    setReplyingTo(null);
-    setShowReplies((prevShowReplies) => ({
-      ...prevShowReplies,
-      [commentId]: true,
-    }));
+  const handleCommentSubmit = () => {
+    if (commentText.trim()) {
+      handleAddComment(commentText);
+      setCommentText(''); // Clear the comment input field
+    }
+  };
+
+  const handleReplySubmit = () => {
+    if (replyText.trim()) {
+      handleAddReply(replyText, replyingTo); // Add reply
+      setReplyText(''); // Clear the reply input field
+      setReplyingTo(null); // Close the reply input
+      setShowReplies((prevShowReplies) => ({
+        ...prevShowReplies,
+        [replyingTo]: true,
+      }));
+    }
   };
 
   return (
@@ -41,9 +53,13 @@ const CommentsPopup = ({ comments = [], handleClose, handleAddComment, handleAdd
       <IconButton className="close-button" onClick={handleClose}>
         <CloseIcon />
       </IconButton>
-      <h3>Comments:</h3>
       <div className="add-comment-section">
-        <AddComment handleAddComment={handleAddComment} placeholder="Add a comment" />
+        <AddComment 
+          value={commentText} 
+          setValue={setCommentText} 
+          handleAddComment={handleCommentSubmit} 
+          placeholder="Add a comment" 
+        />
       </div>
       <div className="comments-list">
         {comments.length > 0 ? (
@@ -74,7 +90,12 @@ const CommentsPopup = ({ comments = [], handleClose, handleAddComment, handleAdd
                 </div>
                 {replyingTo === comment.id && (
                   <div className="add-reply-section">
-                    <AddComment handleAddComment={(text) => handleReplySubmit(text, comment.id)} placeholder="Add a reply" />
+                    <AddComment
+                      value={replyText}
+                      setValue={setReplyText}
+                      handleAddComment={handleReplySubmit}
+                      placeholder="Add a reply"
+                    />
                   </div>
                 )}
                 {showReplies[comment.id] && comment.replies && comment.replies.length > 0 && (

@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './AddComment.css';
 
-const AddComment = ({ handleAddComment, placeholder }) => {
-  const [commentText, setCommentText] = useState('');
-
+const AddComment = ({ value, setValue, handleAddComment, placeholder }) => {
+  // Ensure setValue is defined as a function
   const handleSubmit = () => {
-    if (commentText.trim()) {
-      handleAddComment(commentText);
-      setCommentText('');
+    if (value.trim()) {
+      handleAddComment(value);
+      setValue(''); // Clear the input field after submission
     }
   };
 
@@ -20,9 +19,9 @@ const AddComment = ({ handleAddComment, placeholder }) => {
         variant="outlined"
         fullWidth
         multiline
-        rows={1}
-        value={commentText}
-        onChange={(e) => setCommentText(e.target.value)}
+        rows={2}
+        value={value}
+        onChange={(e) => setValue(e.target.value)} // Update value
         className="comment-textbox"
       />
       <Button
