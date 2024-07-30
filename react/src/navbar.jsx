@@ -23,7 +23,7 @@ const getStartedButtonStyle = {
 const Navbar = () => (
   <nav className="navbar">
     <div className="navbar-left">
-      <Link to="/" className="navbar-brand"> <SportsSoccerSharpIcon style={{ fontSize:'large'}}/> SoccerSphere</Link>
+      <Link to="/" className="navbar-brand"> <SportsSoccerSharpIcon style={{ fontSize:'large'}}/> Football Pulse PK</Link>
     </div>
     <div className="navbar-center">
       <Link to="/">Home</Link>

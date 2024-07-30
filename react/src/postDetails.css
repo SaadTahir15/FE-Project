@@ -1,3 +1,6 @@
+body{
+    overflow: scroll;
+}
 .post-details-container {
     display: flex;
     justify-content: center;
@@ -19,48 +22,4 @@
     background-color: transparent !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
     box-shadow: none !important;
-}
-
-.card-icons {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.post-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.post-content {
-    font-size: 1.5rem;
-}
-
-.icon {
-    margin-right: 10px;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.icon.clickable:hover {
-    transform: scale(1.1);
-}
-
-.comments-popup {
-    position: fixed;
-    right: 0;
-    top: 60px; /* Adjust this value to be below the navbar */
-    width: 300px;
-    height: calc(100% - 60px); /* Adjust this value to match the top value */
-    background: white;
-    border-left: 2px solid #ccc;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.comment-card {
-    margin-bottom: 10px;
 }

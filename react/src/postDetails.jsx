@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import CommentIcon from '@mui/icons-material/Comment';
-import { initialPosts } from './post'; // Ensure setPosts is a function that updates the posts state
+import { Card, CardHeader, CardContent } from '@mui/material';
+import { useParams } from 'react-router-dom'; // Correct import for useParams
+import CommentsPopup from './CommentsPopup'; // Import the CommentsPopup component
+import AvatarComponent from './AvatarComponent'; // Import AvatarComponent
+import LikeCommentIcons from './LikeCommentIcons';
+import PostContent from './PostContent'; // Import PostContent
+import { initialPosts } from './post';
 import './postDetails.css';
 
-// Sample comments data organized by post ID
+// Sample comments data for demonstration purposes
 const commentsData = {
-  1: [{ id: 1, name: 'John', text: 'Great post!' }, { id: 2, name: 'John', text: 'worst post!' }],
+  1: [{ id: 1, name: 'John', text: 'Great post!' }, { id: 2, name: 'John', text: 'Worst post!' }],
   2: [{ id: 2, name: 'Jane', text: 'Interesting read!' }],
   3: [{ id: 3, name: 'Doe', text: 'Very informative!' }],
 };
@@ -22,6 +19,9 @@ const PostDetails = () => {
   const { postId } = useParams();
   const [posts, setPosts] = useState(initialPosts);
   const [showComments, setShowComments] = useState(false);
+  const [likedPosts, setLikedPosts] = useState({});
+  const [comments, setComments] = useState(commentsData[postId] || []);
+
   const post = posts.find((p) => p.id === parseInt(postId));
 
   if (!post) {
@@ -30,9 +30,12 @@ const PostDetails = () => {
 
   const handleLike = () => {
     const updatedPosts = posts.map(p =>
-      p.id === post.id ? { ...p, likes: p.likes + 1 } : p
+      p.id === post.id
+        ? { ...p, likes: likedPosts[post.id] ? p.likes - 1 : p.likes + 1 }
+        : p
     );
     setPosts(updatedPosts);
+    setLikedPosts({ ...likedPosts, [post.id]: !likedPosts[post.id] });
   };
 
   const handleComment = () => {
@@ -43,66 +46,41 @@ const PostDetails = () => {
     setShowComments(false);
   };
 
+  const handleAddComment = (newCommentText) => {
+    const newComment = {
+      id: comments.length + 1,
+      name: 'Current User', // Replace with dynamic user if needed
+      text: newCommentText,
+    };
+    setComments([...comments, newComment]);
+  };
+
   return (
     <div className="post-details-container">
       <Card className="post-details-card custom-card">
         <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {post.name.charAt(0)}
-            </Avatar>
-          }
+          avatar={<AvatarComponent name={post.name} />}
           title={post.name}
         />
         <CardContent>
-          <Typography
-            className="post-title"
-            color="text.primary"
-          >
-            {post.title}
-          </Typography>
-          <Typography
-            className="post-content"
-            color="text.secondary"
-          >
-            {post.content}
-          </Typography>
-
-          <div className="card-icons">
-            <FavoriteIcon
-              className="icon clickable"
-              onClick={handleLike}
-            /> {post.likes}
-            <CommentIcon
-              className="icon clickable"
-              onClick={handleComment}
-            /> {post.comments}
-          </div>
+          <PostContent title={post.title} content={post.content} />
+          <LikeCommentIcons
+            postId={post.id}
+            likes={post.likes}
+            comments={comments.length}
+            handleLike={handleLike}
+            handleComment={handleComment}
+            liked={likedPosts[post.id]}
+          />
         </CardContent>
       </Card>
 
       {showComments && (
-        <div className="comments-popup">
-          <button onClick={handleCloseComments}>Close</button>
-          <h3>Comments:</h3>
-          {commentsData[post.id]?.map(comment => (
-            <Card key={comment.id} className="comment-card">
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label="comment">
-                    {comment.name.charAt(0)}
-                  </Avatar>
-                }
-                title={comment.name}
-              />
-              <CardContent>
-                <Typography color="text.secondary">
-                  {comment.text}
-                </Typography>
-              </CardContent>
-            </Card>
-          )) || <p>No comments yet.</p>}
-        </div>
+        <CommentsPopup
+          comments={comments}
+          handleClose={handleCloseComments}
+          handleAddComment={handleAddComment} // Pass handleAddComment as prop
+        />
       )}
     </div>
   );
