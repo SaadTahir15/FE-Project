@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+// PostDetails.jsx
+import React, { useState, useContext } from 'react';
 import { Card, CardHeader, CardContent } from '@mui/material';
-import { useParams } from 'react-router-dom'; // Correct import for useParams
-import CommentsPopup from './CommentsPopup'; // Import the CommentsPopup component
-import AvatarComponent from './AvatarComponent'; // Import AvatarComponent
+import { useParams } from 'react-router-dom';
+import CommentsPopup from './CommentsPopup';
+import AvatarComponent from './AvatarComponent';
 import LikeCommentIcons from './LikeCommentIcons';
-import PostContent from './PostContent'; // Import PostContent
-import { initialPosts } from './post';
+import PostContent from './PostContent';
+import { PostsContext } from './PostsContext';
+import { CommentsContext } from './CommentsContext';
 import './postDetails.css';
-
-// Sample comments data for demonstration purposes
-const commentsData = {
-  1: [
-    { id: 1, name: 'John', text: 'Great post!', replies: [] },
-    { id: 2, name: 'John', text: 'Worst post!', replies: [] }
-  ],
-  2: [{ id: 2, name: 'Jane', text: 'Interesting read!', replies: [] }],
-  3: [{ id: 3, name: 'Doe', text: 'Very informative!', replies: [] }],
-};
 
 const PostDetails = () => {
   const { postId } = useParams();
-  const [posts, setPosts] = useState(initialPosts);
+  const { posts, setPosts } = useContext(PostsContext);
+  const { comments, setComments } = useContext(CommentsContext);
   const [showComments, setShowComments] = useState(false);
   const [likedPosts, setLikedPosts] = useState({});
-  const [comments, setComments] = useState(commentsData[postId] || []);
 
   const post = posts.find((p) => p.id === parseInt(postId));
 
@@ -49,30 +41,36 @@ const PostDetails = () => {
     setShowComments(false);
   };
 
-  // Add a new comment
   const handleAddComment = (newCommentText) => {
     const newComment = {
-      id: comments.length + 1,
-      name: 'Current User', // Replace with dynamic user if needed
+      id: (comments[postId]?.length || 0) + 1,
+      name: 'Current User',
       text: newCommentText,
       replies: []
     };
-    setComments([...comments, newComment]);
+    const updatedComments = {
+      ...comments,
+      [postId]: [...(comments[postId] || []), newComment]
+    };
+    setComments(updatedComments);
   };
 
-  // Add a new reply to a specific comment
   const handleAddReply = (replyText, commentId) => {
     const newReply = {
-      id: Date.now(), // Unique ID for reply, use a more robust ID generator if needed
-      name: 'Current User', // Replace with dynamic user if needed
+      id: Date.now(),
+      name: 'Current User',
       text: replyText
     };
 
-    setComments(comments.map(comment =>
-      comment.id === commentId
-        ? { ...comment, replies: [...comment.replies, newReply] }
-        : comment
-    ));
+    const updatedComments = {
+      ...comments,
+      [postId]: comments[postId].map(comment =>
+        comment.id === commentId
+          ? { ...comment, replies: [...comment.replies, newReply] }
+          : comment
+      )
+    };
+    setComments(updatedComments);
   };
 
   return (
@@ -87,7 +85,7 @@ const PostDetails = () => {
           <LikeCommentIcons
             postId={post.id}
             likes={post.likes}
-            comments={comments.length}
+            comments={(comments[postId] || []).length}
             handleLike={handleLike}
             handleComment={handleComment}
             liked={likedPosts[post.id]}
@@ -97,7 +95,7 @@ const PostDetails = () => {
 
       {showComments && (
         <CommentsPopup
-          comments={comments}
+          comments={comments[postId] || []}
           handleClose={handleCloseComments}
           handleAddComment={handleAddComment}
           handleAddReply={handleAddReply}

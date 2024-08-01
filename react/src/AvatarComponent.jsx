@@ -1,11 +1,14 @@
+// AvatarComponent.jsx
 import React from 'react';
-import Avatar from '@mui/material/Avatar';
+import { Avatar } from '@mui/material';
 import { red } from '@mui/material/colors';
 
-const AvatarComponent = (props) => {
+const AvatarComponent = ({ name }) => {
+  const initials = name ? name.charAt(0) : '?';
+
   return (
     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-      {props.name.charAt(0)}
+      {initials}
     </Avatar>
   );
 };

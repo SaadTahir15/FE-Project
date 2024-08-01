@@ -1,34 +1,39 @@
 import React, { useState } from 'react';
 import './topicBar.css';
-import { IconButton, Button } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
 
-const topics = ['All', 'Messi', 'Mbappe', 'Real Madrid', 'Transfer'];
+function TopicBar({ onWriteClick, onSearch }) {
+  const [searchQuery, setSearchQuery] = useState('');
 
-function TopicBar({ onWriteClick, onTopicChange }) {
-  const [selectedTopic, setSelectedTopic] = useState('All');
-
-  const handleTopicSelect = (topic) => {
-    setSelectedTopic(topic);
-    onTopicChange(topic);
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+    onSearch(query);
   };
 
   return (
     <div className="topic-bar">
-      <IconButton onClick={onWriteClick} color="primary">
+      <IconButton onClick={onWriteClick} color="primary" sx={{ color: 'black' }}>
         <CreateIcon /> Write
       </IconButton>
-      <div className="topic-options">
-        {topics.map(topic => (
-          <Button
-            key={topic}
-            className={`topic-button ${selectedTopic === topic ? 'active' : ''}`}
-            onClick={() => handleTopicSelect(topic)}
-          >
-            {topic}
-          </Button>
-        ))}
-      </div>
+      <TextField
+        className="search-bar"
+        value={searchQuery}
+        onChange={handleSearchChange}
+        placeholder="Search..."
+        variant="outlined"
+        size="small"
+        sx={{
+          marginLeft: '20px',
+          flexGrow: 1,
+          backgroundColor: 'linear-gradient(90deg, rgba(221, 221, 221, 1) 42%, rgba(118, 136, 91, 1) 100%);',
+          // border: '5px solid rgb(10, 60, 10)',
+          border:'none',
+          borderRadius: '5px',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.2)'
+        }}
+      />
     </div>
   );
 }

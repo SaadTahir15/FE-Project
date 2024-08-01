@@ -1,11 +1,9 @@
-// WritePost.jsx
 import React, { useState } from 'react';
 import { Modal, Box, TextField, Button } from '@mui/material';
 import './writePost.css';
 
 const WritePost = ({ isOpen, handleClose, handleSubmit }) => {
   const [newPost, setNewPost] = useState({ title: '', content: '', topic: '' });
-  const topics = ['Messi', 'Mbappe', 'Real Madrid', 'Transfer'];
 
   const onSubmit = () => {
     if (newPost.title && newPost.content && newPost.topic) {
@@ -41,16 +39,9 @@ const WritePost = ({ isOpen, handleClose, handleSubmit }) => {
           label="Topic"
           fullWidth
           margin="normal"
-          select
-          SelectProps={{ native: true }}
           value={newPost.topic}
           onChange={(e) => setNewPost({ ...newPost, topic: e.target.value })}
-        >
-          <option value=""></option>
-          {topics.map((topic) => (
-            <option key={topic} value={topic}>{topic}</option>
-          ))}
-        </TextField>
+        />
         <Button variant="contained" color="primary" onClick={onSubmit}>Publish</Button>
       </Box>
     </Modal>

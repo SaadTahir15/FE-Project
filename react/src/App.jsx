@@ -1,3 +1,4 @@
+// App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Announcement from './announcement';
@@ -6,17 +7,23 @@ import Home from './home';
 import About from './about';
 import Forum from './forum';
 import PostDetails from './postDetails';
+import { PostsProvider } from './PostsContext';
+import { CommentsProvider } from './CommentsContext';
 
 const App = () => (
   <div>
-    <Announcement />
+    {/* <Announcement /> */}
     <Navbar />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} /> 
-      <Route path="/forum" element={<Forum />} /> 
-      <Route path="/post/:postId" element={<PostDetails />} />
-    </Routes>
+    <PostsProvider>
+      <CommentsProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} /> 
+          <Route path="/forum" element={<Forum />} /> 
+          <Route path="/post/:postId" element={<PostDetails />} />
+        </Routes>
+      </CommentsProvider>
+    </PostsProvider>
   </div>
 );
 

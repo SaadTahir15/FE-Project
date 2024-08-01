@@ -1,24 +1,15 @@
 .topic-bar {
-    display: flex;
-    align-items: center;
-    width: 90%;
-    padding: 10px 20px;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-  }
-  
-  .topic-chip {
-    margin: 0 5px;
-  }
-  
-  .topic-bar .MuiIconButton-root {
-    margin-right: 10px;
-  }
-  
-  .topic-button.active {
-    background-color: #b3d9ff;
-    border: 1px solid #007bff;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, rgba(221, 221, 221, 1) 42%, rgba(118, 136, 91, 1) 100%);
+  border: 5px solid rgb(10, 60, 10);
+  border-radius: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.topic-bar .MuiIconButton-root {
+  margin-right: 10px;
 }

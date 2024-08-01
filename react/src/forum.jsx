@@ -1,5 +1,5 @@
 // Forum.jsx
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './forum.css';
 import Card from '@mui/material/Card';
@@ -7,20 +7,20 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import TopicBar from './topicBar';
 import WritePost from './writePost';
-import { initialPosts } from './post';
+import { PostsContext } from './PostsContext';
 
 const topics = ['All', 'Messi', 'Mbappe', 'Real Madrid', 'Transfer'];
 
 function Forum() {
   const navigate = useNavigate();
+  const { posts, setPosts } = useContext(PostsContext);
   const [selectedTopic, setSelectedTopic] = useState('All');
   const [isWriting, setIsWriting] = useState(false);
-  const [posts, setPosts] = useState(initialPosts);
 
   const handleClick = (postId) => {
     navigate(`/post/${postId}`);
@@ -35,8 +35,8 @@ function Forum() {
   };
 
   const handleSubmit = (newPost) => {
-    setPosts([...posts, { ...newPost, id: posts.length + 1, likes: 0, comments: 0 }]);
-    setIsWriting(false); // Close the write post dialog after submitting
+    setPosts([...posts, { ...newPost, id: posts.length + 1, likes: 0, comments: 0, name: newPost.name || 'Anonymous' }]);
+    setIsWriting(false); //
   };
 
   const handleTopicChange = (topic) => {
@@ -57,7 +57,7 @@ function Forum() {
         >
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              <Avatar sx={{ bgcolor: '#76885B' }} aria-label="recipe">
                 {post.name ? post.name.charAt(0) : '?'}
               </Avatar>
             }

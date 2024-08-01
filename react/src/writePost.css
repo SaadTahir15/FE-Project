@@ -1,9 +1,7 @@
-/* writePost.css */
 .write-post-modal {
-    width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-  }
-  
+  width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
