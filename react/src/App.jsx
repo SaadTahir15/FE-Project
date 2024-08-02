@@ -1,7 +1,7 @@
 // App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Announcement from './announcement';
+// import Announcement from './announcement';
 import Navbar from './navbar';
 import Home from './home';
 import About from './about';
