@@ -1,5 +1,6 @@
 // src/components/Hero.js
 import React, { useState, useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import CreateSharpIcon from '@mui/icons-material/CreateSharp';
 import ShoppingBagSharpIcon from '@mui/icons-material/ShoppingBagSharp';
 import image1 from './assets/1.png';
@@ -15,19 +16,38 @@ const images = [image1, image2, image3, image4, image5, image6];
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [animationCompleted, setAnimationCompleted] = useState(false);
+  const controls = useAnimation();
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 1000);
+    }, 3000); // Updated interval for a smoother transition
 
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const startAnimation = async () => {
+      await controls.start({ opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } });
+      setAnimationCompleted(true);
+    };
+    
+    startAnimation();
+  }, [controls]);
+
   return (
     <div className="hero-container">
       <div className="hero-text">
-        <h1 className="hero-title"><span style={{color: '#76885B', fontSize: 'larger'}}>Join the Conversation.</span> <br /><span style={{fontSize: 'larger'}}>Fuel the Change.</span> <br /><span style={{color: '#76885B', fontSize: 'larger'}}>Shop the Trend.</span></h1>
+        <motion.h1
+          className="hero-title"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controls}
+        >
+          <span style={{color: '#76885B', fontSize: 'larger'}}>Join the Conversation.</span> <br />
+          <span style={{fontSize: 'larger',}}>Fuel the Change.</span> <br />
+          <span style={{color: '#76885B', fontSize: 'larger'}}>Shop the Trend.</span>
+        </motion.h1>
         <div className="hero-buttons">
           <Button 
             variant="contained" 

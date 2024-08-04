@@ -1,13 +1,12 @@
-/* src/navbar.css */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #76885B;
+  background-color: #57693f; /* Darker green to complement the forum background */
   padding: 0 20px;
   color: white;
   height: 60px;
-  border-bottom: solid black;
+  border-bottom: solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: sticky;
   top: 0;
@@ -21,7 +20,7 @@
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
-  color: rgb(16, 15, 15);
+  color: #FFFFFF; /* White for better contrast */
   text-decoration: none;
 }
 
@@ -32,7 +31,7 @@
 }
 
 .navbar-center a {
-  color: rgb(9, 9, 9);
+  color: #FFFFFF; /* White for better contrast */
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
@@ -40,12 +39,12 @@
 }
 
 .navbar-center a:hover {
-  color: #DDDDDD;
+  color: #DDDDDD; /* Light gray for hover effect */
 }
 
 .navbar-right {
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  gap: 15px; /* Increased gap for better spacing */
+  gap: 15px;
 }

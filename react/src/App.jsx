@@ -9,6 +9,7 @@ import Forum from './forum';
 import PostDetails from './postDetails';
 import { PostsProvider } from './PostsContext';
 import { CommentsProvider } from './CommentsContext';
+import './App.css'
 
 const App = () => (
   <div>

@@ -1,4 +1,3 @@
-// src/Navbar.jsx
 import React from 'react';
 import SportsSoccerSharpIcon from '@mui/icons-material/SportsSoccerSharp';
 import { Link } from 'react-router-dom';
@@ -7,7 +6,7 @@ import './navbar.css';
 
 const signInButtonStyle = {
   borderRadius: '50px',
-  color: 'black',
+  color: 'white',
   border: 'none',
   backgroundColor: 'transparent',
   textTransform: 'none'

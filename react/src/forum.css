@@ -1,26 +1,55 @@
-body{
-    background: linear-gradient(90deg, rgba(221,221,221,1) 42%, rgba(118,136,91,1) 100%);
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    width: 100%;
+/* src/components/forum.css */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.card-icons {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  height: 100vh; /* Use viewport height for full screen */
+  width: 100%;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 100vh; /* Ensure full height usage */
+}
+
+.posts {
+  flex: 3;
+  overflow: auto; /* Add scroll if needed */
+}
+
+.sidebar {
+  flex: ;
+  padding-left: 20px;
+  height: 100%; /* Ensure sidebar takes full height */
+  display: flex;
+  flex-direction: column;
 }
 
 .custom-card {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 2px;
-    background-color: transparent !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-    box-shadow: none !important;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 10px;
+  background-color: #fff !important;
+  border-radius: 10px !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.2s;
 }
 
+.custom-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-icons {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}

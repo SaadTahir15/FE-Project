@@ -1,0 +1,24 @@
+.top-discussions {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  flex: 1; /* Allow to grow in the flex container */
+  min-height: 200px; /* Set a minimum height to ensure it has enough space */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+  
+  h2 {
+    margin-top: 0;
+    color: #57693f;
+  }
+  
+  .discussion-card {
+    margin-bottom: 15px; /* Add gap between cards */
+  }
+  
+  .discussion-card:last-child {
+    margin-bottom: 0; /* Remove bottom margin for the last card */
+  }
+  
