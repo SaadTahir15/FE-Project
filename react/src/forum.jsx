@@ -2,8 +2,10 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './forum.css';
+import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -74,15 +76,24 @@ function Forum() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <div className="custom-card" onClick={() => handleClick(post.id)} style={{ cursor: 'pointer' }}>
+                <Card className="custom-card" onClick={() => handleClick(post.id)} style={{ cursor: 'pointer' }}>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: '#76885B', cursor: 'pointer' }} aria-label="recipe">
-                        {post.name ? post.name.charAt(0) : '?'}
+                        {post.name && post.name.charAt(0)}
                       </Avatar>
                     }
                     title={post.name || 'Anonymous'}
                   />
+                  {post.image && (
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={post.image}
+                      alt={post.title || "Post image"}
+                      sx={{ objectFit: 'cover', borderRadius: '10px'}} 
+                    />
+                  )}
                   <CardContent>
                     <Typography variant="h6" color="text.primary" sx={{ fontWeight: 'bold' }}>
                       {post.title}
@@ -90,7 +101,7 @@ function Forum() {
                     <Typography variant="body2" color="text.secondary" sx={{ paddingTop: '0' }}>
                       {post.content}
                     </Typography>
-                    <div className="card-icons">
+                    <div className="card-icons" style={{ marginBottom: '10px' }}>
                       <Typography variant="body2" color="text.secondary">
                         <FavoriteIcon sx={{ verticalAlign: 'middle' }} /> {post.likes}
                       </Typography>
@@ -98,8 +109,11 @@ function Forum() {
                         <CommentIcon sx={{ verticalAlign: 'middle' }} /> {post.comments}
                       </Typography>
                     </div>
+                    <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold' }}>
+                      {post.topic}
+                    </Typography>
                   </CardContent>
-                </div>
+                </Card>
               </motion.div>
             ))
           ) : (

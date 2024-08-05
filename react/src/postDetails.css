@@ -1,6 +1,7 @@
-body{
+body {
     overflow: scroll;
 }
+
 .post-details-container {
     display: flex;
     justify-content: center;
@@ -23,4 +24,32 @@ body{
     background-color: transparent !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
     box-shadow: none !important;
+}
+
+.card-header {
+    padding-left: 0 !important;
+}
+
+.card-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.card-icons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.post-topic {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.big-heart {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
 }

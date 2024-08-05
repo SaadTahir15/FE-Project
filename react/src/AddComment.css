@@ -1,7 +1,8 @@
 .add-comment {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    /* gap: 8px; */
+    /* background: gainsboro; */
     /* margin-top: 20px; */
 }
 

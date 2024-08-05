@@ -1,18 +1,36 @@
 .comments-popup {
   position: fixed;
   top: 62px;
-  right: 0;
+  right: -450px; /* Start from off-screen */
   width: 450px; /* Adjust width as needed */
-  height: 91vh; /* Full viewport height */
-  background: white; /* Background color */
+  height: 91vh; /* Reduced height */
+  background: gainsboro; /* Background color */
   border: 1px solid #ddd; /* Border color */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for better visibility */
   display: flex;
   flex-direction: column;
+  animation: slide-in 0.5s forwards; /* Apply animation */
+}
+
+@keyframes slide-in {
+  from {
+    right: -450px; /* Start off-screen */
+  }
+  to {
+    right: 0; /* End at the final position */
+  }
+}
+
+.comments-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
 }
 
 .close-button {
-  align-self: flex-end;
+  align-self: flex-start;
   margin: 8px;
 }
 
@@ -29,13 +47,13 @@
 .add-comment-section {
   border-top: 1px solid #ddd; /* Border color */
   padding: 8px;
-  background: white; /* Background color */
+  /* background: white; Background color */
 }
 
-.add-comment-section .comment-textbox {
-  width: 100%; /* Full width */
-  margin-bottom: 8px; /* Margin below the text box */
-  font-size: 14px; /* Adjust text size */
+.comment-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .add-reply-section {

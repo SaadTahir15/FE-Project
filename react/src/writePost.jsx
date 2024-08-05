@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
-import { Modal, Box, TextField, Button } from '@mui/material';
+import { Modal, Box, TextField, Button, Input } from '@mui/material';
 import './writePost.css';
 
 const WritePost = ({ isOpen, handleClose, handleSubmit }) => {
-  const [newPost, setNewPost] = useState({ title: '', content: '', topic: '' });
+  const [newPost, setNewPost] = useState({ title: '', content: '', topic: '', image: null });
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setNewPost({ ...newPost, image: reader.result });
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
 
   const onSubmit = () => {
     if (newPost.title && newPost.content && newPost.topic) {
       handleSubmit(newPost);
-      setNewPost({ title: '', content: '', topic: '' });
+      setNewPost({ title: '', content: '', topic: '', image: null });
       handleClose();
     } else {
       alert('Please fill in all fields');
@@ -42,7 +53,14 @@ const WritePost = ({ isOpen, handleClose, handleSubmit }) => {
           value={newPost.topic}
           onChange={(e) => setNewPost({ ...newPost, topic: e.target.value })}
         />
-        <Button variant="contained" color="primary" onClick={onSubmit}>Publish</Button>
+        <div className="file-upload-container">
+          <Input
+            type="file"
+            inputProps={{ accept: 'image/*' }}
+            onChange={handleImageUpload}
+          />
+          <Button variant="contained" color="primary" onClick={onSubmit}>Publish</Button>
+        </div>
       </Box>
     </Modal>
   );

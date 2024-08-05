@@ -1,8 +1,21 @@
-/* src/components/forum.css */
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+}
+/* Remove left padding for CardHeader */
+.custom-card .MuiCardHeader-root {
+  padding-left: 0 !important;
+}
+
+/* Remove left padding for CardContent */
+.custom-card .MuiCardContent-root {
+  padding-left: 0 !important;
+}
+
+/* Adjust TopicBar component if needed */
+.custom-card .topic {
+  padding-left: 0 !important;
 }
 
 .container {
@@ -23,11 +36,12 @@ body {
 
 .posts {
   flex: 3;
-  overflow: auto; /* Add scroll if needed */
+  padding-left: 20px;
+  overflow: auto;
 }
 
 .sidebar {
-  flex: ;
+  flex: 2;
   padding-left: 20px;
   height: 100%; /* Ensure sidebar takes full height */
   display: flex;
@@ -52,4 +66,27 @@ body {
   display: flex;
   align-items: center;
   margin-top: 10px;
+}
+
+/* Custom scrollbar */
+.posts::-webkit-scrollbar {
+  width: 12px;
+}
+
+.posts::-webkit-scrollbar-thumb {
+  background-color: #76885B;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.posts::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Custom scrollbar for Firefox */
+.posts {
+  scrollbar-width: thin;
+  scrollbar-color: #76885B #f0f0f0;
 }

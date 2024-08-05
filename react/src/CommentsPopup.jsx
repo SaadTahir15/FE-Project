@@ -9,7 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import ReplyIcon from '@mui/icons-material/Reply';
 import CloseIcon from '@mui/icons-material/Close';
 import CommentIcon from '@mui/icons-material/Comment';
-import AddComment from './AddComment'; 
+import SendIcon from '@mui/icons-material/Send';
+import TextField from '@mui/material/TextField';
 import './CommentsPopup.css';
 
 const CommentsPopup = ({ comments = [], handleClose, handleAddComment, handleAddReply }) => {
@@ -50,16 +51,29 @@ const CommentsPopup = ({ comments = [], handleClose, handleAddComment, handleAdd
 
   return (
     <div className="comments-popup">
-      <IconButton className="close-button" onClick={handleClose}>
-        <CloseIcon />
-      </IconButton>
+      <div className="comments-popup-header">
+        <IconButton className="close-button" onClick={handleClose}>
+          <CloseIcon />
+        </IconButton>
+      </div>
       <div className="add-comment-section">
-        <AddComment 
-          value={commentText} 
-          setValue={setCommentText} 
-          handleAddComment={handleCommentSubmit} 
-          placeholder="Add a comment" 
-        />
+        <div className="comment-input-container">
+          <TextField
+            fullWidth
+            variant="outlined"
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+            placeholder="Add a comment"
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                handleCommentSubmit();
+              }
+            }}
+          />
+          <IconButton onClick={handleCommentSubmit}>
+            <SendIcon />
+          </IconButton>
+        </div>
       </div>
       <div className="comments-list">
         {comments.length > 0 ? (
@@ -90,12 +104,23 @@ const CommentsPopup = ({ comments = [], handleClose, handleAddComment, handleAdd
                 </div>
                 {replyingTo === comment.id && (
                   <div className="add-reply-section">
-                    <AddComment
-                      value={replyText}
-                      setValue={setReplyText}
-                      handleAddComment={handleReplySubmit}
-                      placeholder="Add a reply"
-                    />
+                    <div className="comment-input-container">
+                      <TextField
+                        fullWidth
+                        variant="outlined"
+                        value={replyText}
+                        onChange={(e) => setReplyText(e.target.value)}
+                        placeholder="Add a reply"
+                        onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            handleReplySubmit();
+                          }
+                        }}
+                      />
+                      <IconButton onClick={handleReplySubmit}>
+                        <SendIcon />
+                      </IconButton>
+                    </div>
                   </div>
                 )}
                 {showReplies[comment.id] && comment.replies && comment.replies.length > 0 && (
