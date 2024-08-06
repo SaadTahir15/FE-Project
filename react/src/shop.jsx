@@ -7,9 +7,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import items from './items';
 import TopicBar from './topicBar';
+import ItemPopup from './ItemPopup';
 
 function Shop() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleSearchChange = (query) => {
     setSearchTerm(query);
@@ -22,6 +24,14 @@ function Shop() {
   const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedItem(null);
+  };
 
   return (
     <div className="shop-container">
@@ -42,7 +52,7 @@ function Shop() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
               >
-                <Card className="shop-custom-card">
+                <Card className="shop-custom-card" onClick={() => handleItemClick(item)}>
                   <CardMedia
                     component="img"
                     image={item.image}
@@ -69,6 +79,10 @@ function Shop() {
           )}
         </div>
       </div>
+
+      {selectedItem && (
+        <ItemPopup item={selectedItem} onClose={handleClosePopup} />
+      )}
     </div>
   );
 }

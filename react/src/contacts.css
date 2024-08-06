@@ -1,0 +1,96 @@
+.contacts-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+}
+
+.contacts-container h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #57693f; /* Matching the color scheme */
+}
+
+.contacts-form {
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+}
+
+.form-card {
+    background: rgba(75, 87, 58, 0.8) !important; /* Matching the color scheme with low transparency */
+    color: #fff !important;
+}
+
+.submit-button {
+    background-color: #76885B !important;
+    color: #fff !important;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    background-color: #6a7d4e !important;
+}
+
+.thank-you-message {
+    background: rgba(75, 87, 58, 0.8); /* Matching the color scheme with low transparency */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.thank-you-message h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.thank-you-message p {
+    font-size: 1.25rem;
+    color: #ddd; /* Matching the color scheme */
+}
+
+.contact-info {
+    margin-top: 2rem;
+}
+
+.contact-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.contact-details .MuiIconButton-root {
+    margin-right: 0.5rem;
+}
+
+.contact-heading {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.social-media .MuiIconButton-root {
+    margin: 0 0.5rem;
+    color: #fff; /* White color */
+    transition: transform 0.3s ease;
+}
+
+.social-media .MuiIconButton-root:hover {
+    transform: scale(1.1);
+}
+
+.footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    color: #fff;
+}

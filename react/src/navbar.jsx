@@ -29,7 +29,7 @@ const Navbar = () => (
       <Link to="/forum">Forum</Link>
       <Link to="/shop">Shop</Link>
       <Link to="/about">About</Link>
-      <Link to="/contact">Contact</Link>
+      <Link to="/contacts">Contact</Link>
     </div>
     <div className="navbar-right">
       <Button 
