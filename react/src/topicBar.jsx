@@ -1,15 +1,18 @@
+// src/TopicBar.js
 import React from 'react';
 import './topicBar.css';
 import { IconButton, Button } from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
 import SearchBar from './SearchBar';
 
-function TopicBar({ onWriteClick, onShowAll, searchQuery, onSearchChange }) {
+function TopicBar({ onWriteClick, onShowAll, searchQuery, onSearchChange, showWriteButton }) {
   return (
     <div className="topic-bar">
-      <IconButton onClick={onWriteClick} color="primary" sx={{ color: 'black' }}>
-        <CreateIcon /> Write
-      </IconButton>
+      {showWriteButton && (
+        <IconButton onClick={onWriteClick} color="primary" sx={{ color: 'black' }}>
+          <CreateIcon /> Write
+        </IconButton>
+      )}
       <Button
         onClick={onShowAll}
         variant="outlined"

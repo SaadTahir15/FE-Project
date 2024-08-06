@@ -1,3 +1,4 @@
+// src/Forum.js
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -57,6 +58,9 @@ function Forum() {
     );
   });
 
+  console.log('Posts:', posts);
+  console.log('Filtered Posts:', filteredPosts);
+
   return (
     <div className="container">
       <TopicBar 
@@ -64,6 +68,7 @@ function Forum() {
         onShowAll={handleShowAll}
         searchQuery={searchTerm}
         onSearchChange={handleSearchChange}
+        showWriteButton={true}
       />
       <div className="main-content">
         <div className="posts">

@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 /* Remove left padding for CardHeader */
 .custom-card .MuiCardHeader-root {
   padding-left: 0 !important;
@@ -40,6 +41,16 @@ body {
   overflow: auto;
 }
 
+/* Hide scrollbar for WebKit browsers */
+.posts::-webkit-scrollbar {
+  width: 0; /* Hides the scrollbar */
+  background: transparent; /* Ensure the background is transparent */
+}
+
+.posts::-webkit-scrollbar-thumb {
+  background: transparent; /* Ensure the scrollbar thumb is transparent */
+}
+
 .sidebar {
   flex: 2;
   padding-left: 20px;
@@ -68,25 +79,12 @@ body {
   margin-top: 10px;
 }
 
-/* Custom scrollbar */
-.posts::-webkit-scrollbar {
-  width: 12px;
-}
-
-.posts::-webkit-scrollbar-thumb {
-  background-color: #76885B;
-  border-radius: 10px;
-  border: 3px solid transparent;
-  background-clip: content-box;
-}
-
-.posts::-webkit-scrollbar-track {
-  background-color: #f0f0f0;
-  border-radius: 10px;
-}
-
-/* Custom scrollbar for Firefox */
+/* Hide scrollbar for Firefox */
 .posts {
-  scrollbar-width: thin;
-  scrollbar-color: #76885B #f0f0f0;
+  scrollbar-width: none; /* Hides the scrollbar */
+  -ms-overflow-style: none; /* Hides the scrollbar for IE and Edge */
+}
+
+.posts::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar for WebKit browsers */
 }

@@ -1,0 +1,53 @@
+.shop-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .shop-main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .shop-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 20px;
+    width: 80%;
+  }
+  
+  .shop-item-card {
+    flex: 0 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  .shop-custom-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: transparent !important; /* Ensure the card background is transparent */
+    border-radius: 10px !important;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.2s;
+  }
+  
+  .shop-custom-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .shop-custom-card img {
+    object-fit: cover;
+    height: 200px;
+  }
+  
+  .shop-custom-card .MuiCardContent-root {
+    background-color: transparent !important; /* Make CardContent background transparent */
+    padding: 16px !important; /* Adjust padding as needed */
+  }
+  
