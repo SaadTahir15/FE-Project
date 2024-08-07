@@ -68,7 +68,7 @@ const ItemPopup = ({ item, onClose }) => {
           <CardContent>
             <Typography variant="h5">{item.name}</Typography>
             <Typography variant="body2">{item.description}</Typography>
-            <Typography variant="h6">${item.price}</Typography>
+            <Typography variant="h6">{item.price}</Typography>
             <div className="quantity-controls">
               <IconButton onClick={handleDecrease}>
                 <Remove />
